@@ -1,4 +1,12 @@
 class ArticlesController < ApplicationController
+  def index
+    @articles = Article.all
+  end
+
+  def show
+    @article = Article.find(params[:id])
+  end
+
   def new; end
 
   # Creates a new article and redirects to index
@@ -6,10 +14,6 @@ class ArticlesController < ApplicationController
     @article = Article.new new_article_params
     @article.save
     redirect_to @article
-  end
-
-  def show
-    @article = Article.find(params[:id])
   end
 
   def new_article_params
