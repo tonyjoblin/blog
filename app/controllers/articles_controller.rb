@@ -3,6 +3,12 @@ class ArticlesController < ApplicationController
 
   # Creates a new article and redirects to index
   def create
-    render plain: params[:article].inspect
+    @article = Article.new new_article_params
+    @article.save
+    redirect_to @article
+  end
+
+  def new_article_params
+    params.require(:article).permit(:title, :text)
   end
 end
